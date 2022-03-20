@@ -1,0 +1,59 @@
+enum PHASE {
+    ONE
+    TWO
+    THREE
+    FOUR
+    FIVE
+}
+type Coffee {
+    id: ID!
+    name: String!
+    description: String!
+    producing_area: String
+    high_price: Int
+    low_price: Int
+    standard_price: [PHASE]!
+    richness: [PHASE]!
+    bitterness: [PHASE]!
+    acidity: [PHASE]!
+    sweetness: [PHASE]!
+}
+
+type User {
+    id: ID!
+    name: String!
+    like_coffee: ID!
+    mail: String
+}
+
+type Comment {
+    id: ID!
+    coffee_id: ID!
+    user_id: ID!
+    title: String!
+    comment: String
+}
+
+input NewUser {
+    name: String!
+    mail: String
+}
+
+input NewCoffee {
+    id: ID!
+    name: String!
+    description: String!
+    producing_area: String
+    high_price: Int
+    low_price: Int
+    standard_price: PHASE!
+    richness: PHASE!
+    bitterness: PHASE!
+    acidity: PHASE!
+    sweetness: PHASE!
+}
+
+type Mutation {
+    createUser(input: NewUser!): User!
+    createCoffee(input: NewCoffee!): ID!
+}
